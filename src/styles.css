@@ -1,0 +1,472 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * StudentOS design system — "Diagonal Glass OS"
+ * All colours are oklch tokens. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--background);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-ink: var(--foreground);
+  --color-mute: var(--mute);
+  --color-accent2: var(--accent2);
+  --color-accent2-foreground: var(--accent-foreground);
+
+  --color-card: var(--panel);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--panel);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--secondary);
+  --color-muted-foreground: var(--mute);
+  --color-accent: var(--primary);
+  --color-accent-foreground: var(--primary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--primary);
+
+  --color-chart-1: var(--primary);
+  --color-chart-2: var(--accent2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--panel);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--secondary);
+  --color-sidebar-accent-foreground: var(--foreground);
+  --color-sidebar-border: var(--line);
+  --color-sidebar-ring: var(--primary);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* dark is the default register for StudentOS */
+  --background: oklch(0.156 0.025 267.8);
+  --panel: oklch(0.198 0.036 266.2);
+  --line: oklch(0.276 0.049 265.3);
+  --foreground: oklch(0.906 0.021 264.5);
+  --mute: oklch(0.641 0.031 261.4);
+  --secondary: oklch(0.235 0.04 265);
+  --primary: oklch(0.785 0.133 181.9);
+  --primary-foreground: oklch(0.156 0.025 267.8);
+  --accent2: oklch(0.657 0.182 261.7);
+  --accent-foreground: oklch(0.156 0.025 267.8);
+  --destructive: oklch(0.65 0.21 22);
+  --destructive-foreground: oklch(0.156 0.025 267.8);
+  --success: oklch(0.75 0.15 155);
+  --warning: oklch(0.82 0.15 78);
+  --chart-3: oklch(0.75 0.15 155);
+  --chart-4: oklch(0.82 0.15 78);
+  --chart-5: oklch(0.7 0.18 350);
+
+  --surface-veil: oklch(1 0 0 / 5%);
+  --surface-veil-soft: oklch(1 0 0 / 3%);
+  --glow: 0 0 24px -6px var(--primary);
+  --shadow-panel: 0 18px 40px -28px oklch(0 0 0 / 80%);
+}
+
+.light {
+  --background: oklch(0.979 0.006 264.5);
+  --panel: oklch(1 0 0);
+  --line: oklch(0.905 0.015 264.5);
+  --foreground: oklch(0.24 0.035 266);
+  --mute: oklch(0.53 0.03 261);
+  --secondary: oklch(0.955 0.01 264);
+  --primary: oklch(0.62 0.12 182);
+  --primary-foreground: oklch(0.99 0 0);
+  --accent2: oklch(0.55 0.19 262);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.56 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.55 0.14 155);
+  --warning: oklch(0.68 0.15 70);
+
+  --surface-veil: oklch(0.24 0.035 266 / 4%);
+  --surface-veil-soft: oklch(0.24 0.035 266 / 2.5%);
+  --shadow-panel: 0 18px 40px -30px oklch(0.24 0.035 266 / 45%);
+}
+
+/* ---- accent themes ---- */
+[data-accent="violet"] {
+  --primary: oklch(0.72 0.17 300);
+  --accent2: oklch(0.66 0.18 275);
+}
+[data-accent="violet"].light {
+  --primary: oklch(0.56 0.2 300);
+  --accent2: oklch(0.55 0.19 275);
+}
+[data-accent="amber"] {
+  --primary: oklch(0.82 0.15 78);
+  --accent2: oklch(0.72 0.17 40);
+}
+[data-accent="amber"].light {
+  --primary: oklch(0.68 0.15 65);
+  --accent2: oklch(0.6 0.17 40);
+}
+[data-accent="rose"] {
+  --primary: oklch(0.72 0.17 10);
+  --accent2: oklch(0.66 0.18 340);
+}
+[data-accent="rose"].light {
+  --primary: oklch(0.58 0.2 15);
+  --accent2: oklch(0.55 0.19 340);
+}
+[data-accent="emerald"] {
+  --primary: oklch(0.78 0.16 155);
+  --accent2: oklch(0.7 0.14 190);
+}
+[data-accent="emerald"].light {
+  --primary: oklch(0.56 0.14 155);
+  --accent2: oklch(0.55 0.13 195);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@utility app-canvas {
+  background-image:
+    radial-gradient(
+      900px 500px at 90% -10%,
+      color-mix(in oklab, var(--accent2) 14%, transparent) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 500px at -10% 110%,
+      color-mix(in oklab, var(--primary) 10%, transparent) 0%,
+      transparent 55%
+    );
+}
+
+@utility panel {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--panel),
+    color-mix(in oklab, var(--background) 70%, var(--panel))
+  );
+  border-radius: var(--radius-2xl);
+  box-shadow:
+    inset 0 0 0 1px var(--line),
+    var(--shadow-panel);
+}
+
+@utility panel-accent {
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in oklab, var(--primary) 14%, var(--panel)),
+    var(--background)
+  );
+  border-radius: var(--radius-2xl);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent),
+    var(--shadow-panel);
+}
+
+@utility veil {
+  background-color: var(--surface-veil);
+}
+
+@utility veil-soft {
+  background-color: var(--surface-veil-soft);
+}
+
+@utility rise {
+  animation: so-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@utility scrollbar-slim {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 999px;
+  }
+}
+
+@keyframes so-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* =========================================================================
+ * Resume document (Resume Builder)
+ * A printed artefact: it keeps a fixed light paper palette in both app themes.
+ * The accent arrives per-document as --cv-ink / --cv-soft.
+ * ========================================================================= */
+:root {
+  --cv-paper: oklch(0.993 0.003 95);
+  --cv-text: oklch(0.27 0.025 220);
+  --cv-muted: oklch(0.5 0.02 220);
+  --cv-rule: oklch(0.88 0.01 200);
+}
+
+.cv-paper {
+  --cv-ink: oklch(0.42 0.07 190);
+  --cv-soft: oklch(0.95 0.025 180);
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--cv-paper);
+  color: var(--cv-text);
+  font-family: var(--font-sans);
+  font-size: 9.6pt;
+  line-height: 1.45;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.cv-paper a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--cv-ink) 35%, transparent);
+}
+.cv-grid {
+  display: grid;
+  grid-template-columns: 68mm minmax(0, 1fr);
+  min-height: 297mm;
+}
+.cv-grid-single { grid-template-columns: minmax(0, 1fr); }
+.cv-side,
+.cv-main {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.cv-side {
+  background: var(--cv-soft);
+  padding: 14mm 8mm 12mm 10mm;
+}
+.cv-main { padding: 14mm 13mm 12mm 11mm; }
+.cv-minimal .cv-main,
+.cv-academic .cv-main { padding: 15mm 17mm 13mm; }
+
+.cv-photo {
+  display: block;
+  width: 38mm;
+  height: 38mm;
+  margin: 0 auto 7mm;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 1.2mm solid var(--cv-paper);
+  box-shadow: 0 0 0 0.35mm color-mix(in oklab, var(--cv-ink) 30%, transparent);
+}
+.cv-photo-sm { width: 26mm; height: 26mm; margin: 0; flex-shrink: 0; }
+
+.cv-header {
+  display: flex;
+  gap: 6mm;
+  align-items: center;
+  padding-bottom: 5mm;
+  margin-bottom: 1mm;
+  border-bottom: 0.3mm solid var(--cv-rule);
+}
+.cv-header-text { min-width: 0; }
+.cv-name {
+  font-family: var(--font-display);
+  font-size: 25pt;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--cv-ink);
+}
+.cv-headline { margin-top: 1.5mm; font-size: 10.5pt; font-weight: 600; color: var(--cv-text); }
+.cv-tagline { margin-top: 1mm; color: var(--cv-muted); font-style: italic; }
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1mm 4mm;
+  margin-top: 3mm;
+  font-size: 8.4pt;
+  color: var(--cv-muted);
+}
+.cv-contact li { display: inline-flex; align-items: center; gap: 1.3mm; min-width: 0; overflow-wrap: anywhere; }
+
+.cv-section { margin-top: 5mm; break-inside: avoid-page; }
+.cv-h {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  padding-bottom: 1.3mm;
+  margin-bottom: 2.4mm;
+  border-bottom: 0.3mm solid color-mix(in oklab, var(--cv-ink) 30%, transparent);
+  font-family: var(--font-display);
+  font-size: 8.6pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cv-ink);
+}
+.cv-ico { width: 3.3mm; height: 3.3mm; flex-shrink: 0; color: var(--cv-ink); }
+
+.cv-entry { break-inside: avoid; }
+.cv-entry + .cv-entry { margin-top: 3.2mm; }
+.cv-entry-tight + .cv-entry-tight { margin-top: 1.6mm; }
+.cv-row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.cv-title { font-weight: 700; color: var(--cv-text); min-width: 0; overflow-wrap: anywhere; }
+.cv-caps { text-transform: uppercase; letter-spacing: 0.04em; font-size: 9pt; }
+.cv-date { flex-shrink: 0; font-size: 8.4pt; color: var(--cv-ink); font-weight: 600; white-space: nowrap; }
+.cv-sub { color: var(--cv-muted); font-weight: 500; }
+.cv-sub-inline { font-weight: 400; color: var(--cv-muted); }
+.cv-muted { color: var(--cv-muted); }
+.cv-p { margin-top: 0.8mm; overflow-wrap: anywhere; }
+.cv-link { margin-top: 1mm; font-size: 8.6pt; overflow-wrap: anywhere; }
+.cv-bullets { margin-top: 1mm; }
+.cv-bullets li { position: relative; padding-left: 3.6mm; overflow-wrap: anywhere; }
+.cv-bullets li + li { margin-top: 0.4mm; }
+.cv-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0.6mm;
+  top: 0.62em;
+  width: 1.2mm;
+  height: 1.2mm;
+  border-radius: 9999px;
+  background: var(--cv-ink);
+}
+.cv-group + .cv-group { margin-top: 2mm; }
+.cv-group-title {
+  display: block;
+  font-size: 7.6pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cv-muted);
+}
+.cv-links li + li { margin-top: 1.6mm; }
+.cv-links a, .cv-links span:last-child { overflow-wrap: anywhere; font-size: 8.6pt; }
+.cv-langs li { display: flex; justify-content: space-between; gap: 2mm; }
+.cv-langs li + li { margin-top: 0.8mm; }
+.cv-quote {
+  margin-top: 7mm;
+  padding-top: 4mm;
+  border-top: 0.3mm solid color-mix(in oklab, var(--cv-ink) 25%, transparent);
+  font-style: italic;
+  color: var(--cv-muted);
+}
+.cv-quote p { margin-top: 1.5mm; }
+.cv-side .cv-section:first-of-type { margin-top: 0; }
+
+/* Single-column templates: sidebar content flows below as a compact grid */
+.cv-side-inline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 8mm;
+}
+.cv-side-inline .cv-quote { grid-column: 1 / -1; }
+
+/* Professional: dark sidebar */
+.cv-professional .cv-side { background: var(--cv-ink); color: oklch(0.96 0.005 250); }
+.cv-professional .cv-side .cv-h,
+.cv-professional .cv-side .cv-ico { color: oklch(0.96 0.005 250); }
+.cv-professional .cv-side .cv-h { border-color: oklch(1 0 0 / 25%); }
+.cv-professional .cv-side .cv-muted,
+.cv-professional .cv-side .cv-group-title,
+.cv-professional .cv-side .cv-quote { color: oklch(0.85 0.01 250); border-color: oklch(1 0 0 / 25%); }
+.cv-professional .cv-side .cv-bullets li::before { background: oklch(0.96 0.005 250); }
+.cv-professional .cv-side a { border-color: oklch(1 0 0 / 35%); }
+.cv-professional .cv-photo { border-color: oklch(1 0 0 / 15%); }
+.cv-professional .cv-name { color: var(--cv-text); }
+.cv-professional .cv-header { border-bottom: 0.6mm solid var(--cv-ink); }
+
+/* Minimal: no tint, quiet headings */
+.cv-minimal .cv-h { border-bottom-color: var(--cv-rule); }
+.cv-minimal .cv-name { color: var(--cv-text); }
+
+/* Academic: serif, centred header, no icons */
+.cv-academic { font-family: Georgia, "Times New Roman", serif; font-size: 10pt; }
+.cv-academic .cv-name, .cv-academic .cv-h { font-family: Georgia, "Times New Roman", serif; }
+.cv-academic .cv-header { justify-content: center; text-align: center; flex-direction: column; }
+.cv-academic .cv-contact { justify-content: center; }
+.cv-academic .cv-h { letter-spacing: 0.12em; }
+.cv-academic .cv-h .cv-ico { display: none; }
+
+/* Print: only the resume, A4, edge to edge */
+.cv-print-root { display: none; }
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  html, body { background: var(--cv-paper) !important; }
+  body.cv-printing > *:not(.cv-print-root) { display: none !important; }
+  body.cv-printing .cv-print-root { display: block !important; }
+  .cv-print-root .cv-paper { width: 210mm; box-shadow: none; }
+}
